@@ -20,7 +20,7 @@ class Page extends State<MinePage>{
     );
   }
   Widget buildAppBar(BuildContext context){
-    return new AppBar(title: const Text('我的'),);
+    return new AppBar(title: const Text('我的'),centerTitle: true,);
   }
   Image myImage(BuildContext context){
     return new Image.network('https://img.mukewang.com/5c18cf540001ac8206000338-240-135.jpg');
