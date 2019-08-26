@@ -16,31 +16,11 @@ class Page extends State<HomePage>{
       appBar: buildAppBar(context),
       body: GridView(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
-        mainAxisSpacing: 2.0,
+        mainAxisSpacing: 0.0,
         crossAxisSpacing: 2.0,
 
       ),
-
-      children: <Widget>[
-        new Column(
-          children: <Widget>[
-            new Image.asset("image/qq.png"),
-            Text("QQ")
-          ],
-        ),
-        new Column(
-          children: <Widget>[
-            new Image.asset("image/qqc.png"),
-            Text("QQ")
-          ],
-        ),
-        new Column(
-          children: <Widget>[
-            new Image.asset("image/qqo.png"),
-            Text("QQ")
-          ],
-        ),
-      ],
+      children: gridViewList(context,7),
       ),
     );
   }
@@ -50,4 +30,37 @@ class Page extends State<HomePage>{
   Image myImage(BuildContext context){
     return new Image.network('https://img.mukewang.com/5c18cf540001ac8206000338-240-135.jpg');
   }
+  Image getImage(src){
+    return new Image.asset(src,width: 50.0,height: 50.0,);
+  }
+  Padding getText(title){
+    return new Padding(
+        padding: const EdgeInsets.only(top: 5),
+        child: new Text(title,style: new TextStyle(fontSize: 18.0,))
+    );
+
+  }
+List<Widget> gridViewList(BuildContext context,int index){
+    List<Widget> widlist = new List();
+    for(int i=0;i<index;i++){
+      widlist.add(buildItem(context,i));
+    }
+    return widlist;
+}
+  Widget buildItem(BuildContext context,int index,){
+    //设置字体样式
+    TextStyle textStyle = new TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0);
+    return new GestureDetector(
+          onTap: (){
+
+          },
+          child: new Column(
+            children: <Widget>[
+              getImage("image/qqo.png"),
+              getText("QQ")
+            ],
+          ),
+    );
+  }
+
 }
