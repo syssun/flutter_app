@@ -24,10 +24,22 @@ class Page extends State<HomePage>{
       children: <Widget>[
         new Column(
           children: <Widget>[
-            Text("1"),
-        Text("1")
+            new Image.asset("image/qq.png"),
+            Text("QQ")
           ],
-        )
+        ),
+        new Column(
+          children: <Widget>[
+            new Image.asset("image/qqc.png"),
+            Text("QQ")
+          ],
+        ),
+        new Column(
+          children: <Widget>[
+            new Image.asset("image/qqo.png"),
+            Text("QQ")
+          ],
+        ),
       ],
       ),
     );
