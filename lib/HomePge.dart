@@ -16,9 +16,9 @@ class Page extends State<HomePage>{
       appBar: buildAppBar(context),
       body: GridView(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
-        mainAxisSpacing: 0.0,
+        mainAxisSpacing: 2.0,
         crossAxisSpacing: 2.0,
-
+        childAspectRatio: 1.5,
       ),
       children: gridViewList(context,7),
       ),
@@ -36,9 +36,8 @@ class Page extends State<HomePage>{
   Padding getText(title){
     return new Padding(
         padding: const EdgeInsets.only(top: 5),
-        child: new Text(title,style: new TextStyle(fontSize: 18.0,))
+        child: new Text(title,style: new TextStyle(fontSize: 16.0,))
     );
-
   }
 List<Widget> gridViewList(BuildContext context,int index){
     List<Widget> widlist = new List();
@@ -49,10 +48,9 @@ List<Widget> gridViewList(BuildContext context,int index){
 }
   Widget buildItem(BuildContext context,int index,){
     //设置字体样式
-    TextStyle textStyle = new TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0);
+    //TextStyle textStyle = new TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0);
     return new GestureDetector(
           onTap: (){
-
           },
           child: new Column(
             children: <Widget>[
