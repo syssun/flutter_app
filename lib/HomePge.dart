@@ -49,8 +49,9 @@ List<Widget> gridViewList(BuildContext context,int index){
   Widget buildItem(BuildContext context,int index,){
     //设置字体样式
     //TextStyle textStyle = new TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0);
-    return new GestureDetector(
+    return new InkWell(
           onTap: (){
+            _neverSatisfied();
           },
           child: new Column(
             children: <Widget>[
@@ -60,5 +61,47 @@ List<Widget> gridViewList(BuildContext context,int index){
           ),
     );
   }
+
+
+
+  //dialog
+
+  Future<void> _neverSatisfied() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Rewind and remember'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('You will never be satisfied.'),
+                Text('You\’re like me. I’m never satisfied.'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Regret'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            FlatButton(
+              child: Text('cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
+
+
 
 }
