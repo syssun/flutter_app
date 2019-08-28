@@ -14,14 +14,19 @@ class Page extends State<HomePage>{
   Widget layout(BuildContext context){
     return new Scaffold(
       appBar: buildAppBar(context),
-      body: GridView(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        mainAxisSpacing: 2.0,
-        crossAxisSpacing: 2.0,
-        childAspectRatio: 1.5,
-      ),
-      children: gridViewList(context,7),
-      ),
+      body: new Container(
+        margin: new EdgeInsets.only(top: 20.0),
+        child: GridView(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            mainAxisSpacing: 15.0,
+            crossAxisSpacing: 2.0,
+            childAspectRatio: 1.4
+        ),
+          children: gridViewList(context),
+        ),
+      )
+
+
     );
   }
   Widget buildAppBar(BuildContext context){
@@ -31,77 +36,43 @@ class Page extends State<HomePage>{
     return new Image.network('https://img.mukewang.com/5c18cf540001ac8206000338-240-135.jpg');
   }
   Image getImage(src){
+    print(src);
     return new Image.asset(src,width: 50.0,height: 50.0,);
   }
   Padding getText(title){
+    TextStyle textStyle = new TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0);
     return new Padding(
-        padding: const EdgeInsets.only(top: 5),
-        child: new Text(title,style: new TextStyle(fontSize: 16.0,))
+        padding: const EdgeInsets.only(top: 10),
+        child: new Text(title,style: textStyle)
     );
+
   }
-List<Widget> gridViewList(BuildContext context,int index){
+List<Widget> gridViewList(BuildContext context){
     List<Widget> widlist = new List();
-    for(int i=0;i<index;i++){
-      widlist.add(buildItem(context,i));
-    }
+    widlist.add(buildItem(context,{"title":"锁屏", "src":"image/suoping.png"}));
+    widlist.add(buildItem(context,{"title":"解锁", "src":"image/cancet.png"}));
+    widlist.add(buildItem(context,{"title":"60S关机", "src":"image/shutdow.png"}));
+    widlist.add(buildItem(context,{"title":"取消关机", "src":"image/canceo.png"}));
+    widlist.add(buildItem(context,{"title":"打开QQ", "src":"image/qqo.png"}));
+    widlist.add(buildItem(context,{"title":"关闭QQ", "src":"image/qqc.png"}));
+    widlist.add(buildItem(context,{"title":"计算器", "src":"image/jisuanqi.png"}));
+    widlist.add(buildItem(context,{"title":"打开微信", "src":"image/wechat.png"}));
     return widlist;
 }
-  Widget buildItem(BuildContext context,int index,){
+  Widget buildItem(BuildContext context,Map map){
     //设置字体样式
-    //TextStyle textStyle = new TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0);
-    return new InkWell(
+
+    return new GestureDetector(
           onTap: (){
-            _neverSatisfied();
+
           },
           child: new Column(
             children: <Widget>[
-              getImage("image/qqo.png"),
-              getText("QQ")
+              getImage(map["src"]),
+              getText(map["title"])
             ],
           ),
     );
   }
-
-
-
-  //dialog
-
-  Future<void> _neverSatisfied() async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Rewind and remember'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text('You will never be satisfied.'),
-                Text('You\’re like me. I’m never satisfied.'),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            FlatButton(
-              child: Text('Regret'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            FlatButton(
-              child: Text('cancel'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-
-
-
 
 }
