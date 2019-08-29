@@ -15,7 +15,7 @@ class Page extends State<HomePage>{
     return new Scaffold(
       appBar: buildAppBar(context),
       body: new Container(
-        margin: new EdgeInsets.only(top: 20.0),
+        padding: new EdgeInsets.only(top: 20.0),
         child: GridView(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
             mainAxisSpacing: 15.0,
