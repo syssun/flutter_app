@@ -14,17 +14,21 @@ class Page extends State<HomePage>{
   Widget layout(BuildContext context){
     return new Scaffold(
       appBar: buildAppBar(context),
-      body: new Container(
-        padding: new EdgeInsets.only(top: 20.0),
-        child: GridView(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            mainAxisSpacing: 15.0,
-            crossAxisSpacing: 2.0,
-            childAspectRatio: 1.4
-        ),
-          children: gridViewList(context),
+      body: new Center(
+        child: new Container(
+          padding: new EdgeInsets.only(top: 20.0),
+          child: GridView(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              mainAxisSpacing: 15.0,
+              crossAxisSpacing: 2.0,
+              childAspectRatio: 1.4
+          ),
+            children: gridViewList(context),
+          ),
         ),
       )
+
+
 
 
     );
