@@ -40,7 +40,7 @@ class Page extends State<HomePage>{
     return new Image.asset(src,width: 50.0,height: 50.0,);
   }
   Padding getText(title){
-    TextStyle textStyle = new TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0);
+    TextStyle textStyle = new TextStyle(fontWeight: FontWeight.normal, fontSize: 14.0);
     return new Padding(
         padding: const EdgeInsets.only(top: 10),
         child: new Text(title,style: textStyle)
