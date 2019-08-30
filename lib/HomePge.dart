@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 class HomePage extends StatefulWidget{
   @override
   State<StatefulWidget> createState(){
@@ -104,15 +105,19 @@ List<Widget> gridViewList(BuildContext context){
 
 
 
+
   Widget buildItem(BuildContext context,Map map){
     //设置字体样式
 
     return
       Expanded(
         flex: 1,
-
         child:new GestureDetector(
           onTap: (){
+            Fluttertoast.showToast(
+                msg: map['title'],
+                gravity: ToastGravity.BOTTOM
+            );
           },
           child:
           Container(
