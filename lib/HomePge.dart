@@ -1,13 +1,28 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'dart:async';
+import 'package:flutter_app/HttpUtils.dart';
 class HomePage extends StatefulWidget{
   @override
   State<StatefulWidget> createState(){
     return new Page();
   }
 }
+
+// GET 请求
+// 返回的结果直接就是 json 格式
+// 要使用 await，必须在方法名后面加上 async
+_handleGetShelf () async {
+  var result = await HttpUtils.request(
+      'http://192.168.1.4:8080/ctl/calc',
+      method: HttpUtils.GET,
+  );
+  print(result);
+}
+
 
 class Page extends State<HomePage>{
   @override
@@ -31,6 +46,9 @@ class Page extends State<HomePage>{
               builder: DotSwiperPaginationBuilder(
                 color: Colors.black54,
                 activeColor: Colors.white,
+                size: 8.0,
+                activeSize: 8,
+
               )),
           //control: new SwiperControl(),
           scrollDirection: Axis.horizontal,
@@ -65,11 +83,9 @@ class Page extends State<HomePage>{
     List<Widget> w = new List();
     w.add(myImage("http://pic25.nipic.com/20121112/9252150_150552938000_2.jpg"));
     w.add(myImage("http://pic16.nipic.com/20111006/6239936_092702973000_2.jpg"));
-    w.add(myImage("http://pic1.win4000.com/wallpaper/c/53cdd1f7c1f21.jpg"));
+    w.add(myImage("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567179064933&di=c79c1b5e153c23facc616aa27ee18f92&imgtype=0&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F908fa0ec08fa513db777cf78376d55fbb3fbd9b3.jpg"));
     return w ;
   }
-
-
 
   Widget _swiperBuilder(BuildContext context,int index) {
     List<Widget> s = swipterlist(context);
@@ -111,7 +127,7 @@ List<Widget> gridViewList(BuildContext context){
     List<Widget> widlist = new List();
     widlist.add(buildItem(context,{"title":"计算器", "src":"image/jisuanqi.png"}));
     widlist.add(buildItem(context,{"title":"打开微信", "src":"image/wechat.png"}));
-    widlist.add(buildItem(context,{"title":"其他", "src":"image/wechat.png"}));
+    widlist.add(buildItem(context,{"title":"关闭微信", "src":"image/wechatt.png"}));
     return widlist;
   }
 
@@ -119,13 +135,13 @@ List<Widget> gridViewList(BuildContext context){
 
 
   Widget buildItem(BuildContext context,Map map){
-    //设置字体样式
 
     return
       Expanded(
         flex: 1,
         child:new GestureDetector(
           onTap: (){
+            _handleGetShelf();
             Fluttertoast.showToast(
                 msg: map['title'],
                 gravity: ToastGravity.BOTTOM
