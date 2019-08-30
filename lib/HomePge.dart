@@ -17,7 +17,7 @@ class HomePage extends StatefulWidget{
 // 要使用 await，必须在方法名后面加上 async
 _handleGetShelf () async {
   var result = await HttpUtils.request(
-      'http://192.168.1.4:8080/ctl/calc',
+      '/calc',
       method: HttpUtils.GET,
   );
   print(result);
