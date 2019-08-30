@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -24,8 +25,8 @@ class Page extends State<HomePage>{
       width: MediaQuery.of(context).size.width,
         height: 160.0,
         child: Swiper(
-          itemBuilder: _swiperBuilder,
-          itemCount: 3,
+          itemBuilder:(context,index)=> _swiperBuilder(context,index),
+          itemCount: swipterlist(context).length,
           pagination: new SwiperPagination(
               builder: DotSwiperPaginationBuilder(
                 color: Colors.black54,
@@ -60,14 +61,25 @@ class Page extends State<HomePage>{
 
     );
   }
-  Widget _swiperBuilder(BuildContext context, int index) {
-    return Image.network("https://img.mukewang.com/5c18cf540001ac8206000338-240-135.jpg",fit: BoxFit.fill,);
+  List<Widget> swipterlist(BuildContext context){
+    List<Widget> w = new List();
+    w.add(myImage("http://pic25.nipic.com/20121112/9252150_150552938000_2.jpg"));
+    w.add(myImage("http://pic16.nipic.com/20111006/6239936_092702973000_2.jpg"));
+    w.add(myImage("http://pic1.win4000.com/wallpaper/c/53cdd1f7c1f21.jpg"));
+    return w ;
+  }
+
+
+
+  Widget _swiperBuilder(BuildContext context,int index) {
+    List<Widget> s = swipterlist(context);
+    return s[index];
   }
   Widget buildAppBar(BuildContext context){
     return new AppBar(title: const Text('首页'),centerTitle: true,);
   }
-  Image myImage(BuildContext context){
-    return new Image.network('https://img.mukewang.com/5c18cf540001ac8206000338-240-135.jpg');
+  Image myImage(String src){
+    return new Image.network(src,fit: BoxFit.fill,);
   }
   Image getImage(src){
     print(src);
