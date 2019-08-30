@@ -5,6 +5,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:async';
 import 'package:flutter_app/HttpUtils.dart';
+import 'package:flutter_app/entities/HomeMenus.dart';
 class HomePage extends StatefulWidget{
   @override
   State<StatefulWidget> createState(){
@@ -111,30 +112,30 @@ class Page extends State<HomePage>{
   }
 List<Widget> gridViewList(BuildContext context){
     List<Widget> widlist = new List();
-    widlist.add(buildItem(context,{"title":"锁屏", "src":"image/suoping.png"}));
-    widlist.add(buildItem(context,{"title":"解锁", "src":"image/cancet.png"}));
-    widlist.add(buildItem(context,{"title":"60S关机", "src":"image/shutdow.png"}));
+    widlist.add(buildItem(context,HomeMenus("锁屏", "image/suoping.png","")));
+    widlist.add(buildItem(context,HomeMenus("解锁", "image/cancet.png","")));
+    widlist.add(buildItem(context,HomeMenus("60S关机", "image/shutdow.png","")));
     return widlist;
 }
   List<Widget> gridViewList2(BuildContext context){
     List<Widget> widlist = new List();
-    widlist.add(buildItem(context,{"title":"取消关机", "src":"image/canceo.png"}));
-    widlist.add(buildItem(context,{"title":"打开QQ", "src":"image/qqo.png"}));
-    widlist.add(buildItem(context,{"title":"关闭QQ", "src":"image/qqc.png"}));
+    widlist.add(buildItem(context,HomeMenus("取消关机","image/canceo.png","")));
+    widlist.add(buildItem(context,HomeMenus("打开QQ", "image/qqo.png","")));
+    widlist.add(buildItem(context,HomeMenus("关闭QQ", "image/qqc.png","")));
     return widlist;
   }
   List<Widget> gridViewList3(BuildContext context){
     List<Widget> widlist = new List();
-    widlist.add(buildItem(context,{"title":"计算器", "src":"image/jisuanqi.png"}));
-    widlist.add(buildItem(context,{"title":"打开微信", "src":"image/wechat.png"}));
-    widlist.add(buildItem(context,{"title":"关闭微信", "src":"image/wechatt.png"}));
+    widlist.add(buildItem(context,new HomeMenus('计算器', 'image/jisuanqi.png', 'jisuanqi')));
+    widlist.add(buildItem(context,HomeMenus('打开微信', 'image/wechat.png', 'jisuanqi')));
+    widlist.add(buildItem(context,new HomeMenus('关闭微信', 'image/wechatt.png', 'jisuanqi')));
     return widlist;
   }
 
 
 
 
-  Widget buildItem(BuildContext context,Map map){
+  Widget buildItem(BuildContext context,HomeMenus homeMenus){
 
     return
       Expanded(
@@ -143,7 +144,7 @@ List<Widget> gridViewList(BuildContext context){
           onTap: (){
             _handleGetShelf();
             Fluttertoast.showToast(
-                msg: map['title'],
+                msg: homeMenus.title,
                 gravity: ToastGravity.BOTTOM
             );
           },
@@ -152,8 +153,8 @@ List<Widget> gridViewList(BuildContext context){
             padding: EdgeInsets.only(top: 15.0),
             child:new Column(
               children: <Widget>[
-                getImage(map["src"]),
-                getText(map["title"])
+                getImage(homeMenus.src),
+                getText(homeMenus.title)
               ],
             ),
           )

@@ -1,9 +1,7 @@
 import 'package:dio/dio.dart';
 import 'dart:async';
-
 /*
  * 封装 restful 请求
- *
  * GET、POST、DELETE、PATCH
  * 主要作用为统一处理相关事务：
  *  - 统一处理请求前缀；
@@ -25,7 +23,7 @@ class HttpUtils {
   static const String PATCH = 'patch';
   static const String DELETE = 'delete';
   /// request method
-  static Future<Map> request (String url, { data, method }) async {
+  static Future<dynamic> request (String url, { data, method }) async {
     data = data ?? {};
     method = method ?? 'GET';
     /// restful 请求处理
